@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './AuthForm.css';
 
 function Register({ onRegister, onSwitch }) {
   const [name, setName] = useState('');
@@ -33,33 +32,36 @@ function Register({ onRegister, onSwitch }) {
   };
 
   return (
-    <div className="auth-container">
-      <h2>Inscription</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nom&nbsp;:</label>
-          <input type="text" value={name} onChange={e => setName(e.target.value)} required />
+    <div className="max-w-md mx-auto mt-16 bg-white rounded-xl shadow-lg p-8 flex flex-col items-center">
+      <h2 className="text-2xl font-bold mb-6 text-blue-700">Inscription</h2>
+      <form onSubmit={handleSubmit} className="w-full">
+        <div className="mb-4">
+          <label className="block text-gray-700 mb-2">Nom&nbsp;:</label>
+          <input type="text" value={name} onChange={e => setName(e.target.value)} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
-        <div>
-          <label>Email&nbsp;:</label>
-          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+        <div className="mb-4">
+          <label className="block text-gray-700 mb-2">Email&nbsp;:</label>
+          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
-        <div>
-          <label>Mot de passe&nbsp;:</label>
-          <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
+        <div className="mb-4">
+          <label className="block text-gray-700 mb-2">Mot de passe&nbsp;:</label>
+          <input type="password" value={password} onChange={e => setPassword(e.target.value)} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400" />
         </div>
-        <div>
-          <label>Rôle&nbsp;:</label>
-          <select value={role} onChange={e => setRole(e.target.value)}>
+        <div className="mb-4">
+          <label className="block text-gray-700 mb-2">Rôle&nbsp;:</label>
+          <select value={role} onChange={e => setRole(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
             <option value="etudiant">Étudiant</option>
             <option value="professeur">Professeur</option>
             <option value="responsable">Responsable</option>
           </select>
         </div>
-        {error && <div className="error">{error}</div>}
-        <button type="submit" disabled={loading}>{loading ? 'Inscription...' : 'S\'inscrire'}</button>
+        {error && <div className="bg-red-100 text-red-700 px-3 py-2 rounded mb-3 text-sm">{error}</div>}
+        <button type="submit" disabled={loading}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md transition disabled:bg-blue-300">
+          {loading ? 'Inscription...' : "S'inscrire"}
+        </button>
       </form>
-      <p className="switch-link">Déjà un compte ? <span onClick={onSwitch}>Se connecter</span></p>
+      <p className="mt-5 text-sm text-center text-gray-600">Déjà un compte ? <span onClick={onSwitch} className="text-blue-600 underline cursor-pointer">Se connecter</span></p>
     </div>
   );
 }

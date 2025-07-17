@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import './App.css';
 import Login from './Login';
 import Register from './Register';
+
+
 import Dashboard from './Dashboard';
 
 function App() {
+
+
   const [user, setUser] = useState(null);
   const [showRegister, setShowRegister] = useState(false);
 
@@ -19,7 +22,14 @@ function App() {
   const handleSwitchToLogin = () => setShowRegister(false);
 
   return (
-    <div className="App" style={{ minHeight: '100vh', background: 'linear-gradient(120deg,#f8fafc 0%,#e9edfa 100%)', padding: '0', margin: '0' }}>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white p-0 m-0 flex flex-col items-center">
+      <div className="mt-10 text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-green-400 to-yellow-300 flex items-center">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style={{verticalAlign:'middle',marginRight:14}} xmlns="http://www.w3.org/2000/svg">
+  <rect x="3" y="4" width="18" height="18" rx="4" fill="#fff" stroke="#bbb" strokeWidth="1.5"/>
+  <polyline points="7,13 11,17 17,9" fill="none" stroke="#43ea7c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+        CheckApp
+      </div>
       {!user ? (
         showRegister ? (
           <Register onRegister={handleRegister} onSwitch={handleSwitchToLogin} />
@@ -27,8 +37,8 @@ function App() {
           <Login onLogin={handleLogin} onSwitch={handleSwitchToRegister} />
         )
       ) : (
-        <div style={{ maxWidth: 700, margin: '48px auto', background: '#fff', borderRadius: 18, boxShadow: '0 4px 32px rgba(0,0,0,0.06)', padding: '32px 36px' }}>
-          <h2 style={{ color: '#2b2d42', fontWeight: 700 }}>Bienvenue, {user.name} !</h2>
+        <div className="max-w-2xl mx-auto mt-12 bg-white rounded-2xl shadow-2xl p-10">
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">Bienvenue, {user.name} !</h2>
           <p style={{ color: '#5c7cfa', fontWeight: 500, marginBottom: 24 }}>Vous êtes connecté en tant que <b>{user.role}</b>.</p>
           <Dashboard user={user} />
         </div>

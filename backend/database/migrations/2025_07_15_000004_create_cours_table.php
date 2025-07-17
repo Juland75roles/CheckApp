@@ -8,6 +8,7 @@ return new class extends Migration {
     {
         Schema::create('cours', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
             $table->string('titre');
             $table->unsignedBigInteger('professeur_id');
 $table->unsignedBigInteger('filiere_id');
